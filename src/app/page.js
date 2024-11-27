@@ -1,8 +1,6 @@
-import DashboardLayout from "@/components/DashboardLayout";
-import Image from "next/image";
+import Dashboard from "@/pages/dashboard/Dashboard";
+
 
 export default function Home() {
-  return (
-    <DashboardLayout />
-  );
+  return <Dashboard />;
 }
