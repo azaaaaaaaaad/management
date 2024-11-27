@@ -1,6 +1,7 @@
-import Dashboard from "@/pages/dashboard/Dashboard";
+import Homepage from "@/components/Homepage";
 
 
 export default function Home() {
-  return <Dashboard />;
+  // return <h1>Welcome to home page</h1>
+  return <Homepage/>
 }
