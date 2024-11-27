@@ -5,6 +5,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Image from "next/image";
 
 const Testimonial = () => {
     const testimonials = [
@@ -51,13 +52,18 @@ const Testimonial = () => {
                     {testimonials.map((testimonial, index) => (
                         <SwiperSlide key={index}>
                             <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                                <img
+                                {/* <img
                                     src={testimonial.image}
                                     alt={testimonial.name}
                                     className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
-                                />
+                                /> */}
+                                <Image src={testimonial.image}
+                                    height={200}
+                                    width={200}
+                                    alt={testimonial.name}
+                                    className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"></Image>
                                 <p className="text-gray-600 text-lg italic mb-6">
-                                    "{testimonial.text}"
+                                    &quot;{testimonial.text}&quot;
                                 </p>
                                 <h3 className="text-xl font-bold text-gray-800">
                                     {testimonial.name}
