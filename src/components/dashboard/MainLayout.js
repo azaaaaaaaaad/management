@@ -38,8 +38,8 @@ const MainLayout = () => {
           {/* Content based on route */}
           <div className="mt-8">
             {pathname === "/dashboard" && <div>Dashboard Content</div>}
-            {pathname === "/dashboard/allTeachers" && <div>All Teachers Content</div>}
-            {pathname === "/dashboard/teachersProfile" && <div> Teachers Profile</div>}
+            {pathname === "/dashboard/allTeachers" && <div>All Teachers Content</div> }
+            {pathname === "/dashboard/teacherProfile" && <div> Teacher Profile</div>}
             {pathname === "/dashboard/allClasses" && <div> All Classes</div>}
             {/* Add more conditions as necessary */}
           </div>
