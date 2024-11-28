@@ -10,22 +10,22 @@ import Image from "next/image";
 const Testimonial = () => {
     const testimonials = [
         {
-            name: "KIRA SIMS",
+            name: "Emma Brown",
             role: "Student",
-            image: "/images/kira-sims.jpg",
-            text: "Vivamus fermentum ex quis imperdiet sodales. Sed aliquam nibh tellus, a rutrum turpis pellentesque ac.",
+            image: "https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg",
+            text: "Joining this program was the best decision I ever made. The instructors are amazing, and the lessons are practical and engaging.",
         },
         {
-            name: "PHIL NEAL",
-            role: "Designer",
-            image: "/images/phil-neal.jpg",
-            text: "Nulla nibh libero, tincidunt vero eos et accusamus et justo odio dignissimos ducimus.",
+            name: "Noah Williams",
+            role: "Student",
+            image: "https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg",
+            text: "I gained so much confidence and knowledge through this program. It's been an incredible journey of growth and learning.",
         },
         {
-            name: "ALISON SMITH",
-            role: "Developer",
-            image: "/images/alison-smith.jpg",
-            text: "Sed aliquam nibh tellus, a rutrum turpis pellentesque ac. Vivamus fermentum ex quis imperdiet sodales.",
+            name: "Sophia Johnson",
+            role: "Student",
+            image: "https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg",
+            text: "The community and resources provided here are unmatched. I feel well-prepared to take on any challenge now.",
         },
     ];
 
@@ -36,8 +36,8 @@ const Testimonial = () => {
                     What Our Students Say
                 </h2>
                 <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-                    Our students share their experiences and feedback. Read their inspiring words
-                    about how our programs have impacted their lives.
+                    Hear directly from our students about how this program has transformed their
+                    skills and confidence.
                 </p>
 
                 <Swiper
@@ -52,16 +52,18 @@ const Testimonial = () => {
                     {testimonials.map((testimonial, index) => (
                         <SwiperSlide key={index}>
                             <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                                {/* <img
-                                    src={testimonial.image}
-                                    alt={testimonial.name}
-                                    className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
-                                /> */}
-                                <Image src={testimonial.image}
+                                {/* <Image
+                                    src="https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg"
                                     height={200}
                                     width={200}
                                     alt={testimonial.name}
-                                    className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"></Image>
+                                    className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
+                                /> */}
+                                <img
+                                    src="https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg"
+                                    alt="Testimonial"
+                                    className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
+                                />
                                 <p className="text-gray-600 text-lg italic mb-6">
                                     &quot;{testimonial.text}&quot;
                                 </p>
@@ -79,6 +81,7 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
+
 
 
 
