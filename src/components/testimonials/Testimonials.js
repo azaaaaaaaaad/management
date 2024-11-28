@@ -52,18 +52,18 @@ const Testimonial = () => {
                     {testimonials.map((testimonial, index) => (
                         <SwiperSlide key={index}>
                             <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                                <Image
+                                {/* <Image
                                     src="https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg"
                                     height={200}
                                     width={200}
                                     alt={testimonial.name}
                                     className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
-                                />
-                                {/* <img
+                                /> */}
+                                <img
                                     src="https://i.ibb.co/cbsn3s1/front-view-man-with-nose-ring.jpg"
                                     alt="Testimonial"
                                     className="w-24 h-24 rounded-full border-4 border-teal-500 shadow-md mb-6"
-                                /> */}
+                                />
                                 <p className="text-gray-600 text-lg italic mb-6">
                                     &quot;{testimonial.text}&quot;
                                 </p>
