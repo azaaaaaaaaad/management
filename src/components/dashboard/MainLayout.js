@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation"; // usePathname hook for Next.js 13+
 import Sidebar from "./SidebarLayout";
 import Header from "./HeaderLayout";
+import Dashboard1 from "./layouts/Dashboard1";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,10 +38,11 @@ const MainLayout = () => {
 
           {/* Content based on route */}
           <div className="mt-8">
-            {pathname === "/dashboard" && <div>Dashboard Content</div>}
+            {pathname === "/dashboard" && <Dashboard1 /> }
             {pathname === "/dashboard/allTeachers" && <div>All Teachers Content</div> }
             {pathname === "/dashboard/teacherProfile" && <div> Teacher Profile</div>}
             {pathname === "/dashboard/allClasses" && <div> All Classes</div>}
+            {pathname === "/dashboard/addClass" && <div> Add Class</div>}
             {/* Add more conditions as necessary */}
           </div>
         </section>
