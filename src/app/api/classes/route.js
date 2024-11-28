@@ -36,4 +36,23 @@ export async function POST(req) {
   }
 }
 
+export async function GET(req) {
+  try {
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const collection = db.collection("classes");
+
+    const classes = await collection.find({}).toArray();
+
+    return new Response(JSON.stringify(classes), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error fetching classes:", error);
+    return new Response("Failed to fetch classes", { status: 500 });
+  }
+}
+
+
 

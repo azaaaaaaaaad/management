@@ -1,4 +1,6 @@
-import AddClassForm from "@/components/addClasses/addClasses";
+// import AddClassForm from "@/components/addClasses/addClasses";
+
+import AddClassForm from "@/components/dashboard/addClasses/addClasses";
 
 
 

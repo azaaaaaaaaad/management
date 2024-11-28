@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"; // usePathname hook for Next.js 1
 import Sidebar from "./SidebarLayout";
 import Header from "./HeaderLayout";
 import Dashboard1 from "./layouts/Dashboard1";
-import AddClassForm from "../addClasses/addClasses";
+import AddClassForm from "./addClasses/addClasses";
 
 
 const MainLayout = () => {
