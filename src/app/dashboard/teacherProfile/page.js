@@ -1,7 +1,7 @@
 
 import MainLayout from "@/components/dashboard/MainLayout";
 
-const TeachersProfile = () => {
+const teacherProfile = () => {
 return(
     <>
    <MainLayout />
@@ -9,4 +9,4 @@ return(
 )
 };
 
-export default TeachersProfile;
+export default teacherProfile;

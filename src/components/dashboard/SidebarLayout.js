@@ -43,7 +43,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             <li>
               <a
                 href="/dashboard/teacherProfile"
-                className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive('/dashboard/teachersProfile')}`}
+                className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive('/dashboard/teacherProfile')}`}
               >
                 <FaUser className="text-xl mr-2" />
                 <span>Teacher Profile</span>
