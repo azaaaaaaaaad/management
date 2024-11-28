@@ -19,14 +19,14 @@ const Navbar = () => {
                     <Link href="/home" className="hover:text-blue-500">
                         Home
                     </Link>
-                    <Link href="/courses" className="hover:text-blue-500">
-                        Courses
+                    <Link href="/home" className="hover:text-blue-500">
+                        Contacts
                     </Link>
-                    <Link href="/features" className="hover:text-blue-500">
+                    <Link href="/home" className="hover:text-blue-500">
                         Features
                     </Link>
-                    <Link href="/contact" className="hover:text-blue-500">
-                        Contacts
+                    <Link href="/dashboard" className="hover:text-blue-500">
+                        Dashboard
                     </Link>
                 </nav>
 
@@ -59,14 +59,14 @@ const Navbar = () => {
                         <Link href="/home" className="hover:text-blue-500">
                             Home
                         </Link>
-                        <Link href="/courses" className="hover:text-blue-500">
-                            Courses
+                        <Link href="/home" className="hover:text-blue-500">
+                            Contacts
                         </Link>
-                        <Link href="/features" className="hover:text-blue-500">
+                        <Link href="/home" className="hover:text-blue-500">
                             Features
                         </Link>
-                        <Link href="/contact" className="hover:text-blue-500">
-                            Contacts
+                        <Link href="/dashboard" className="hover:text-blue-500">
+                            Dashboard
                         </Link>
                     </nav>
                 </div>
