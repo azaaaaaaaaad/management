@@ -1,6 +1,5 @@
 import clientPromise from "@/lib/mongodb";
 
-
 export async function GET() {
   try {
     const client = await clientPromise;
@@ -11,7 +10,7 @@ export async function GET() {
 
     return new Response(JSON.stringify(students), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);

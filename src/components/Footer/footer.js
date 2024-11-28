@@ -8,8 +8,7 @@ const Footer = () => {
                 <div>
                     <h3 className="text-2xl font-bold mb-4">Language School</h3>
                     <p className="text-sm text-gray-400">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-                        dolorem et amet adipisci exercitationem.
+                        Language School is a website where you can find the classes you need to up skill yourself.
                     </p>
                 </div>
 

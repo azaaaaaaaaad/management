@@ -16,17 +16,17 @@ const Navbar = () => {
 
                 {/* Desktop Menu */}
                 <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
-                    <Link href="/home" className="hover:text-blue-500">
+                    <Link href="/" className="hover:text-blue-500">
                         Home
                     </Link>
-                    <Link href="/courses" className="hover:text-blue-500">
-                        Courses
+                    <Link href="/" className="hover:text-blue-500">
+                        Contacts
                     </Link>
-                    <Link href="/features" className="hover:text-blue-500">
+                    <Link href="/" className="hover:text-blue-500">
                         Features
                     </Link>
-                    <Link href="/contact" className="hover:text-blue-500">
-                        Contacts
+                    <Link href="/dashboard" className="hover:text-blue-500">
+                        Dashboard
                     </Link>
                 </nav>
 
@@ -56,17 +56,17 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-white shadow-lg">
                     <nav className="flex flex-col space-y-4 py-4 px-4 text-gray-700 font-medium">
-                        <Link href="/home" className="hover:text-blue-500">
+                        <Link href="/" className="hover:text-blue-500">
                             Home
                         </Link>
-                        <Link href="/courses" className="hover:text-blue-500">
-                            Courses
+                        <Link href="/" className="hover:text-blue-500">
+                            Contacts
                         </Link>
-                        <Link href="/features" className="hover:text-blue-500">
+                        <Link href="/" className="hover:text-blue-500">
                             Features
                         </Link>
-                        <Link href="/contact" className="hover:text-blue-500">
-                            Contacts
+                        <Link href="/dashboard" className="hover:text-blue-500">
+                            Dashboard
                         </Link>
                     </nav>
                 </div>
