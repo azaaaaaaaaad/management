@@ -2,10 +2,24 @@ import { BiMaleFemale } from "react-icons/bi";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { GiGraduateCap } from "react-icons/gi";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
-
-
+import AllStudentsData from "./AllStudentsData";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Dashboard1 = () => {
+  const [students, setStudents] = useState([]);
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get("/api/students");
+        setStudents(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchStudents();
+  }, []);
+
   return (
     <div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 lg:w-2/4">
@@ -14,7 +28,7 @@ const Dashboard1 = () => {
             <BiMaleFemale className="bg-purple-200 text-purple-700 rounded-full sm:text-2xl md:text-4xl lg:text-8xl" />
             <div className="mt-6 text-center">
               <p className="text-base text-gray-300 font-bold uppercase">
-                Fetch data and give the length
+                {students?.length}
               </p>
               <h3 className="text-white text-base mt-3 leading-relaxed">
                 Total Students
@@ -62,8 +76,10 @@ const Dashboard1 = () => {
           </div>
         </div>
       </div>
+      <div>{/* another part */}</div>
       <div>
-         {/* another part */}
+        {/* students all data  */}
+        <AllStudentsData />
       </div>
     </div>
   );

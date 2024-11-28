@@ -1,0 +1,268 @@
+[
+  {
+    "name": "John Doe",
+    "gender": "Male",
+    "language_class": "English",
+    "section": "A",
+    "parents": {
+      "father": "Michael Doe",
+      "mother": "Sarah Doe"
+    },
+    "address": "123 Main St, Springfield, IL, 62701",
+    "date_of_birth": "2005-03-15",
+    "phone": "+1 555-123-4567",
+    "email": "john.doe@example.com"
+  },
+  {
+    "name": "Jane Smith",
+    "gender": "Female",
+    "language_class": "Spanish",
+    "section": "B",
+    "parents": {
+      "father": "James Smith",
+      "mother": "Emily Smith"
+    },
+    "address": "456 Oak St, Springfield, IL, 62702",
+    "date_of_birth": "2006-07-22",
+    "phone": "+1 555-987-6543",
+    "email": "jane.smith@example.com"
+  },
+  {
+    "name": "Alex Johnson",
+    "gender": "Non-binary",
+    "language_class": "French",
+    "section": "C",
+    "parents": {
+      "father": "David Johnson",
+      "mother": "Rebecca Johnson"
+    },
+    "address": "789 Pine St, Springfield, IL, 62703",
+    "date_of_birth": "2007-11-30",
+    "phone": "+1 555-111-2233",
+    "email": "alex.johnson@example.com"
+  },
+  {
+    "name": "Emily Davis",
+    "gender": "Female",
+    "language_class": "German",
+    "section": "A",
+    "parents": {
+      "father": "Robert Davis",
+      "mother": "Laura Davis"
+    },
+    "address": "101 Maple St, Springfield, IL, 62704",
+    "date_of_birth": "2004-01-11",
+    "phone": "+1 555-444-5566",
+    "email": "emily.davis@example.com"
+  },
+  {
+    "name": "Michael Brown",
+    "gender": "Male",
+    "language_class": "English",
+    "section": "B",
+    "parents": {
+      "father": "William Brown",
+      "mother": "Linda Brown"
+    },
+    "address": "202 Birch St, Springfield, IL, 62705",
+    "date_of_birth": "2003-06-05",
+    "phone": "+1 555-789-1011",
+    "email": "michael.brown@example.com"
+  },
+  {
+    "name": "Sophia Taylor",
+    "gender": "Female",
+    "language_class": "Spanish",
+    "section": "C",
+    "parents": {
+      "father": "Charles Taylor",
+      "mother": "Olivia Taylor"
+    },
+    "address": "303 Elm St, Springfield, IL, 62706",
+    "date_of_birth": "2005-12-16",
+    "phone": "+1 555-222-3344",
+    "email": "sophia.taylor@example.com"
+  },
+  {
+    "name": "Daniel Wilson",
+    "gender": "Male",
+    "language_class": "French",
+    "section": "A",
+    "parents": {
+      "father": "Joseph Wilson",
+      "mother": "Margaret Wilson"
+    },
+    "address": "404 Pine Ave, Springfield, IL, 62707",
+    "date_of_birth": "2006-09-08",
+    "phone": "+1 555-333-4455",
+    "email": "daniel.wilson@example.com"
+  },
+  {
+    "name": "Olivia Harris",
+    "gender": "Female",
+    "language_class": "German",
+    "section": "B",
+    "parents": {
+      "father": "Benjamin Harris",
+      "mother": "Sophia Harris"
+    },
+    "address": "505 Cedar St, Springfield, IL, 62708",
+    "date_of_birth": "2004-05-23",
+    "phone": "+1 555-444-5567",
+    "email": "olivia.harris@example.com"
+  },
+  {
+    "name": "William Clark",
+    "gender": "Male",
+    "language_class": "English",
+    "section": "C",
+    "parents": {
+      "father": "Richard Clark",
+      "mother": "Nancy Clark"
+    },
+    "address": "606 Oak Ave, Springfield, IL, 62709",
+    "date_of_birth": "2005-02-10",
+    "phone": "+1 555-555-6677",
+    "email": "william.clark@example.com"
+  },
+  {
+    "name": "Ava Lewis",
+    "gender": "Female",
+    "language_class": "Spanish",
+    "section": "A",
+    "parents": {
+      "father": "Thomas Lewis",
+      "mother": "Eleanor Lewis"
+    },
+    "address": "707 Willow St, Springfield, IL, 62710",
+    "date_of_birth": "2007-04-14",
+    "phone": "+1 555-666-7788",
+    "email": "ava.lewis@example.com"
+  },
+  {
+    "name": "Noah Lee",
+    "gender": "Male",
+    "language_class": "French",
+    "section": "B",
+    "parents": {
+      "father": "James Lee",
+      "mother": "Laura Lee"
+    },
+    "address": "808 Birch Ave, Springfield, IL, 62711",
+    "date_of_birth": "2006-08-25",
+    "phone": "+1 555-777-8899",
+    "email": "noah.lee@example.com"
+  },
+  {
+    "name": "Mia King",
+    "gender": "Female",
+    "language_class": "German",
+    "section": "C",
+    "parents": {
+      "father": "Michael King",
+      "mother": "Hannah King"
+    },
+    "address": "909 Maple Ave, Springfield, IL, 62712",
+    "date_of_birth": "2005-01-19",
+    "phone": "+1 555-888-9900",
+    "email": "mia.king@example.com"
+  },
+  {
+    "name": "Lucas Wright",
+    "gender": "Male",
+    "language_class": "English",
+    "section": "A",
+    "parents": {
+      "father": "David Wright",
+      "mother": "Elizabeth Wright"
+    },
+    "address": "123 Pine Ave, Springfield, IL, 62713",
+    "date_of_birth": "2003-12-02",
+    "phone": "+1 555-999-1010",
+    "email": "lucas.wright@example.com"
+  },
+  {
+    "name": "Charlotte Scott",
+    "gender": "Female",
+    "language_class": "Spanish",
+    "section": "B",
+    "parents": {
+      "father": "Christopher Scott",
+      "mother": "Marie Scott"
+    },
+    "address": "234 Oak Dr, Springfield, IL, 62714",
+    "date_of_birth": "2006-10-30",
+    "phone": "+1 555-111-2234",
+    "email": "charlotte.scott@example.com"
+  },
+  {
+    "name": "Ethan Adams",
+    "gender": "Male",
+    "language_class": "French",
+    "section": "C",
+    "parents": {
+      "father": "John Adams",
+      "mother": "Rebecca Adams"
+    },
+    "address": "345 Elm Dr, Springfield, IL, 62715",
+    "date_of_birth": "2005-05-18",
+    "phone": "+1 555-222-3345",
+    "email": "ethan.adams@example.com"
+  },
+  {
+    "name": "Harper Baker",
+    "gender": "Female",
+    "language_class": "German",
+    "section": "A",
+    "parents": {
+      "father": "Daniel Baker",
+      "mother": "Jessica Baker"
+    },
+    "address": "456 Cedar Ave, Springfield, IL, 62716",
+    "date_of_birth": "2007-07-01",
+    "phone": "+1 555-333-4456",
+    "email": "harper.baker@example.com"
+  },
+  {
+    "name": "Liam Mitchell",
+    "gender": "Male",
+    "language_class": "English",
+    "section": "B",
+    "parents": {
+      "father": "Andrew Mitchell",
+      "mother": "Victoria Mitchell"
+    },
+    "address": "567 Birch Dr, Springfield, IL, 62717",
+    "date_of_birth": "2006-11-25",
+    "phone": "+1 555-444-5568",
+    "email": "liam.mitchell@example.com"
+  },
+  {
+    "name": "Ella Harris",
+    "gender": "Female",
+    "language_class": "Spanish",
+    "section": "C",
+    "parents": {
+      "father": "Christopher Harris",
+      "mother": "Samantha Harris"
+    },
+    "address": "678 Pine Dr, Springfield, IL, 62718",
+    "date_of_birth": "2005-03-02",
+    "phone": "+1 555-555-6679",
+    "email": "ella.harris@example.com"
+  },
+  {
+    "name": "Jack Perez",
+    "gender": "Male",
+    "language_class": "French",
+    "section": "A",
+    "parents": {
+      "father": "Carlos Perez",
+      "mother": "Natalia Perez"
+    },
+    "address": "789 Oak Ave, Springfield, IL, 62719",
+    "date_of_birth": "2007-08-17",
+    "phone": "+1 555-666-7780",
+    "email": "jack.perez@example.com"
+  }
+]
