@@ -58,6 +58,15 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <span>All Classes</span>
               </a>
             </li>
+            <li>
+              <a
+                href="/dashboard/addClasses"
+                className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive('/dashboard/addClasses')}`}
+              >
+                <SiGoogleclassroom className="text-xl mr-2" />
+                <span>Add Classes</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
