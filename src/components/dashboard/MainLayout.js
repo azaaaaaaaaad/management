@@ -44,7 +44,7 @@ const MainLayout = () => {
             {pathname === "/dashboard/allTeachers" && <div>All Teachers Content</div>}
             {pathname === "/dashboard/teacherProfile" && <div> Teacher Profile</div>}
             {pathname === "/dashboard/allClasses" && <div> All Classes</div>}
-            {pathname === "/dashboard/addClass" && <AddClassForm></AddClassForm>}
+            {pathname === "/dashboard/addClass" && <AddClassForm/>}
             {/* Add more conditions as necessary */}
           </div>
         </section>
