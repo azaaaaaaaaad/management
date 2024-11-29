@@ -21,9 +21,12 @@ const AllStudentsData = () => {
 
   // Delete student
   const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this student?");
+    if (!confirmed) return;
+
     try {
       await axios.delete(`/api/students/${id}`);
-      setStudents(students.filter((student) => student.id !== id));
+      setStudents(students.filter((student) => student._id !== id)); // Use `_id`
     } catch (error) {
       console.error("Error deleting student:", error);
     }
@@ -45,10 +48,10 @@ const AllStudentsData = () => {
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`/api/students/${editStudent.id}`, editStudent);
+      await axios.put(`/api/students/${editStudent._id}`, editStudent); // Use `_id`
       setStudents(
         students.map((student) =>
-          student.id === editStudent.id ? editStudent : student
+          student._id === editStudent._id ? editStudent : student // Use `_id`
         )
       );
       closeModal();
@@ -103,7 +106,7 @@ const AllStudentsData = () => {
 
                 {/* Delete Button */}
                 <button
-                  onClick={() => handleDelete(student.id)}
+                  onClick={() => handleDelete(student._id)} // Use `_id`
                   className="text-red-500 hover:text-red-700"
                 >
                   Delete
@@ -175,15 +178,15 @@ const AllStudentsData = () => {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
+                  className="mr-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  Save Changes
+                  Save
                 </button>
               </div>
             </form>
