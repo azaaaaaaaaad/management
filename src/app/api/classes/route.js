@@ -81,5 +81,50 @@ export async function GET(req) {
   }
 }
 
+// export async function PUT(req) {
+//   try {
+//     const client = await clientPromise;
+//     const db = client.db(process.env.MONGODB_DB);
+//     const collection = db.collection("classes");
+
+//     const body = await req.json();
+
+//     // Validate required fields for updating
+//     const { idNo, ...updateFields } = body;
+//     if (!idNo) {
+//       return new Response(
+//         JSON.stringify({ error: "idNo is required for updating the class." }),
+//         { status: 400, headers: { "Content-Type": "application/json" } }
+//       );
+//     }
+
+//     // Update the class
+//     const result = await collection.updateOne(
+//       { idNo }, // Filter by unique idNo
+//       { $set: updateFields } // Update fields
+//     );
+
+//     if (result.matchedCount === 0) {
+//       return new Response(
+//         JSON.stringify({ error: "Class not found with the provided idNo." }),
+//         { status: 404, headers: { "Content-Type": "application/json" } }
+//       );
+//     }
+
+//     return new Response(
+//       JSON.stringify({ message: "Class updated successfully", data: result }),
+//       { status: 200, headers: { "Content-Type": "application/json" } }
+//     );
+//   } catch (error) {
+//     console.error("Error updating class:", error);
+//     return new Response(
+//       JSON.stringify({ error: "Failed to update class", details: error.message }),
+//       { status: 500, headers: { "Content-Type": "application/json" } }
+//     );
+//   }
+// }
+
+
+
 
 
