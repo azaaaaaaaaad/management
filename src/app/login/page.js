@@ -24,7 +24,7 @@ async function LoginPage() {
         </form>
 
         <div className="mt-4">
-          <p>Not have an account? <Link href={'/register'} className="text-blue-500 underline">Register</Link> </p>
+          <p>Not have an account? <Link href={'/register'} className="text-blue-500 underline hover:no-underline font-semibold">Register</Link> </p>
         </div>
 
       </div>
