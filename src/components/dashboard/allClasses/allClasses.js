@@ -25,6 +25,28 @@ const AllClasses = () => {
     }
   };
 
+  // const handleEdit = (classData) => {
+  //   setEditingClass(classData); // Set the class to be edited
+  //   setShowEditModal(true); // Open the edit modal
+  // };
+
+  // const handleSaveEdit = async (updatedClass) => {
+  //   try {
+  //     const response = await axios.put('/api/classes', updatedClass);
+
+  //     if (response.status === 200) {
+  //       Swal.fire('Success', 'Class updated successfully!', 'success');
+  //       setClasses((prev) =>
+  //         prev.map((cls) => (cls.idNo === updatedClass.idNo ? updatedClass : cls))
+  //       );
+  //       setShowEditModal(false);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating class:', error);
+  //     Swal.fire('Error', 'Failed to update class.', 'error');
+  //   }
+  // };
+
   // const handleDelete = async (idNo) => {
   //   try {
   //     const result = await Swal.fire({
@@ -36,45 +58,22 @@ const AllClasses = () => {
   //       cancelButtonText: 'Cancel',
   //       reverseButtons: true,
   //     });
-  
+
   //     if (!result.isConfirmed) return;
-  
-  //     // Dynamic route for DELETE request
-  //     const response = await axios.delete(`/api/classes/${idNo}`);
-  
+
+  //     // Send DELETE request
+  //     const response = await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`); // Ensure idNo is encoded
+
   //     if (response.status === 200) {
   //       Swal.fire('Deleted!', 'The class has been deleted successfully.', 'success');
-  
-  //       // Update the local state
   //       setClasses((prev) => prev.filter((cls) => cls.idNo !== idNo));
   //     }
   //   } catch (error) {
   //     console.error('Error deleting class:', error);
   //     Swal.fire('Error!', 'Failed to delete the class.', 'error');
   //   }
-  // };  
-
-  // const handleEdit = (classData) => {
-  //   setEditingClass(classData);
-  //   setShowEditModal(true);
   // };
 
-  // const handleSaveEdit = async (updatedClass) => {
-  //   try {
-  //     const response = await axios.put('/api/classes', updatedClass);
-
-  //     if (response.status === 200) {
-  //       alert('Class updated successfully!');
-  //       setClasses((prev) =>
-  //         prev.map((cls) => (cls.idNo === updatedClass.idNo ? updatedClass : cls))
-  //       );
-  //       setShowEditModal(false);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating class:', error);
-  //     alert('Failed to update class.');
-  //   }
-  // };
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedClasses = classes.slice(startIndex, startIndex + rowsPerPage);
@@ -97,7 +96,7 @@ const AllClasses = () => {
               <th className="px-4 py-3 text-left">Time</th>
               <th className="px-4 py-3 text-left">Phone</th>
               <th className="px-4 py-3 text-left">Email</th>
-              <th className="px-4 py-3 text-left">Actions</th>
+              {/* <th className="px-4 py-3 text-left">Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -117,20 +116,20 @@ const AllClasses = () => {
                 <td className="px-4 py-3">{cls.time}</td>
                 <td className="px-4 py-3">{cls.phone}</td>
                 <td className="px-4 py-3">{cls.email}</td>
-                <td className="px-4 py-3 flex gap-2">
+                {/* <td className="px-4 py-3 flex gap-2">
                   <button
-                    // onClick={() => handleEdit(cls)}
+                    onClick={() => handleEdit(cls)}
                     className="px-3 py-1 bg-blue-600 text-white rounded-md"
                   >
                     Edit
                   </button>
                   <button
-                    // onClick={() => handleDelete(cls.idNo)}
+                    onClick={() => handleDelete(cls.idNo)}
                     className="px-3 py-1 bg-red-600 text-white rounded-md"
                   >
                     Delete
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
