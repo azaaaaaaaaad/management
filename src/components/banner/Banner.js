@@ -21,10 +21,10 @@ const Banner = () => {
                 <SwiperSlide>
                     <div
                         className="h-full bg-cover bg-center flex items-center justify-center"
-                        style={{ backgroundImage: "url('/path-to-image1.jpg')" }}
+                        style={{ backgroundImage: "url('https://i.postimg.cc/7YPfz9rr/teach-child.jpg')" }}
                     >
                         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                        <div className="text-center text-white relative z-10 px-4">
+                        <div className="text-center text-white relative z-10 bg-gray-900/60 py-8 px-12 rounded-md">
                             <h1 className="text-4xl sm:text-5xl font-bold">
                                 Putting Children First
                             </h1>
@@ -47,10 +47,10 @@ const Banner = () => {
                 <SwiperSlide>
                     <div
                         className="h-full bg-cover bg-center flex items-center justify-center"
-                        style={{ backgroundImage: "url('/path-to-image2.jpg')" }}
+                        style={{ backgroundImage: "url('https://i.postimg.cc/66f8TSSh/learning.jpg')" }}
                     >
                         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                        <div className="text-center text-white relative z-10 px-4">
+                        <div className="text-center text-white relative z-10 bg-gray-900/60 py-8 px-12 rounded-md">
                             <h1 className="text-4xl sm:text-5xl font-bold">
                                 Learning Made Fun
                             </h1>
