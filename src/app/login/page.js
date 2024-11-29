@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { login } from "@/action/authAction";
 
 async function LoginPage() {
 
   return (
     <div className="p-8 pt-14">
       <div className="max-w-md mx-auto border rounded-md p-8 shadow-md">
-        <form >
+        <form action={login}>
           <h2 className="text-3xl mb-4">Login</h2>
           <div className="mb-3">
             <label className="block text-sm text-gray-500">Email</label>

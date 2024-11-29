@@ -1,5 +1,7 @@
 import NextAuth from "next-auth"
 import bcrypt from 'bcryptjs'
+import Credentials from 'next-auth/providers/credentials'
+import { connectDB } from "@/lib/db"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -16,18 +18,37 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!email || !password) throw new Error('Please provide email & password!');
 
         // get user from db
-        const client = await clientPromise;
-        const db = client.db();
-        const user = db.collection("users").findOne({ email });
-        
+        const db = await connectDB()
+        const user = await db.collection('users').findOne({ email })
+
         // check user exist; compare hashed pass; throw err if unmatched
         if (!user) throw new Error('No user found!');
         const isMatchedPass = bcrypt.compareSync(password, user.password);
         if (!isMatchedPass) throw new Error('Incorrect password!');
-        
+
         const userInfo = { id: user._id, username: user.username, email, role: user.role }
         return userInfo
       }
     }),
   ],
+  pages: {
+    signIn: '/login'
+  },
+  callbacks: {
+    // set role to token 
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role
+      }
+      return token
+    },
+    // set role to session (from token)
+    async session({ session, token }) {
+      if (token?.sub && token?.role) {
+        session.user.id = token.sub
+        session.user.role = token.role
+      }
+      return session
+    },
+  }
 })

@@ -3,6 +3,7 @@
 import clientPromise from "@/lib/mongodb"
 import { redirect } from "next/navigation"
 import bcrypt from 'bcryptjs'
+import { signIn } from "@/app/auth"
 
 export const register = async (formData) => {
   // get form fields
@@ -31,3 +32,20 @@ export const register = async (formData) => {
   redirect('/login')
 }
 
+export const login = async (formData) => {
+  const email = formData.get('email')
+  const password = formData.get('password')
+
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: '/'
+    })
+  } catch (err) {
+    return err.message
+  }
+
+  redirect('/')
+}
