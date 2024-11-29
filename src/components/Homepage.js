@@ -4,6 +4,7 @@ import Testimonial from "./testimonials/Testimonials";
 import Footer from "./Footer/footer";
 import InSchoolLan from "./InSchoolNum/InSchoolLan";
 import LatestNews from "./LatestNews/LatestNews";
+import InstructorSec from "./InstructorSection/InstructorSec";
 
 export default function Home() {
     return (
@@ -12,6 +13,7 @@ export default function Home() {
             <Banner />
             <InSchoolLan />
             <LatestNews />
+            <InstructorSec />
             <Testimonial></Testimonial>
             <Footer></Footer>
         </div>
