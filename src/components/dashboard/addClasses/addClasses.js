@@ -57,9 +57,9 @@ export default function AddClassForm() {
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                 {[
                     { label: "Teacher Name", name: "teacherName", type: "text" },
-                    { label: "ID No", name: "idNo", type: "text" },
+                    { label: "ID No", name: "idNo", type: "number" },
                     { label: "Gender", name: "gender", type: "select", options: ["Male", "Female"] },
-                    { label: "Class", name: "class", type: "text" },
+                    { label: "Class", name: "class", type: "number" },
                     { label: "Subject", name: "subject", type: "text" },
                     { label: "Section", name: "section", type: "text" },
                     { label: "Date", name: "date", type: "date" },
