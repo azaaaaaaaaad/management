@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { register } from "@/action/authAction";
 
 function RegisterPage() {
   return (
     <div className="p-8 pt-14">
-      <form className="max-w-md mx-auto border rounded-md p-8 shadow-md">
+      <form action={register} className="max-w-md mx-auto border rounded-md p-8 shadow-md">
         <h2 className="text-3xl mb-4">Register</h2>
 
         <div className="mb-3">
@@ -32,8 +33,6 @@ function RegisterPage() {
         <button type="submit" className="w-full px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           Register &rarr;
         </button>
-
-        <hr className="mt-4" />
 
         <div className="mt-4">
           <p className="">Already have an account? <Link href={'/login'} className="text-blue-500 underline hover:no-underline font-semibold">Login</Link> </p>
