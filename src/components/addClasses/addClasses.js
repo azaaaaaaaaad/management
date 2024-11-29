@@ -49,7 +49,7 @@ export default function AddClassForm() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <div className="bg-white shadow-lg rounded-lg p-8">
             <h2 className="text-3xl font-semibold mb-6 text-gray-800">Add New Class</h2>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                 {[
