@@ -3,7 +3,7 @@
 import clientPromise from "@/lib/mongodb"
 import { redirect } from "next/navigation"
 import bcrypt from 'bcryptjs'
-import { signIn } from "@/app/auth"
+import { signIn, signOut } from "@/app/auth"
 
 export const register = async (formData) => {
   // get form fields
@@ -48,4 +48,8 @@ export const login = async (formData) => {
   }
 
   redirect('/')
+}
+
+export const logout = async () => {
+  await signOut()
 }
