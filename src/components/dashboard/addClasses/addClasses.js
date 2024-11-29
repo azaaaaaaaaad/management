@@ -12,7 +12,8 @@ export default function AddClassForm() {
         class: "",
         subject: "",
         section: "",
-        time: "",
+        startTime: "",
+        endTime: "",
         date: "",
         phone: "",
         email: "",
@@ -26,7 +27,8 @@ export default function AddClassForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("/api/classes", formData);
+            const timeRange = `${formData.startTime} - ${formData.endTime}`;
+            const response = await axios.post("/api/classes", { ...formData, time: timeRange });
             if (response.status === 201) {
                 Swal.fire("Success", "Class added successfully!", "success");
                 setFormData({
@@ -36,7 +38,8 @@ export default function AddClassForm() {
                     class: "",
                     subject: "",
                     section: "",
-                    time: "",
+                    startTime: "",
+                    endTime: "",
                     date: "",
                     phone: "",
                     email: "",
@@ -59,7 +62,6 @@ export default function AddClassForm() {
                     { label: "Class", name: "class", type: "text" },
                     { label: "Subject", name: "subject", type: "text" },
                     { label: "Section", name: "section", type: "text" },
-                    { label: "Time", name: "time", type: "text" },
                     { label: "Date", name: "date", type: "date" },
                     { label: "Phone", name: "phone", type: "text" },
                     { label: "Email", name: "email", type: "email" },
@@ -94,6 +96,27 @@ export default function AddClassForm() {
                         </div>
                     )
                 )}
+                {/* Time Range */}
+                <div className="col-span-2 flex flex-col">
+                    <label className="text-gray-600 font-medium mb-1">Time</label>
+                    <div className="flex space-x-2">
+                        <input
+                            type="time"
+                            name="startTime"
+                            value={formData.startTime}
+                            onChange={handleInputChange}
+                            className="p-3 border rounded-md bg-gray-50 text-gray-800 focus:outline-blue-500 focus:ring focus:ring-blue-300 shadow-sm"
+                        />
+                        <span className="self-center text-gray-600">to</span>
+                        <input
+                            type="time"
+                            name="endTime"
+                            value={formData.endTime}
+                            onChange={handleInputChange}
+                            className="p-3 border rounded-md bg-gray-50 text-gray-800 focus:outline-blue-500 focus:ring focus:ring-blue-300 shadow-sm"
+                        />
+                    </div>
+                </div>
                 <div className="col-span-2 flex justify-end space-x-4">
                     <button
                         type="reset"
@@ -105,7 +128,8 @@ export default function AddClassForm() {
                                 class: "",
                                 subject: "",
                                 section: "",
-                                time: "",
+                                startTime: "",
+                                endTime: "",
                                 date: "",
                                 phone: "",
                                 email: "",
