@@ -28,8 +28,8 @@ const Navbar = () => {
           <Link href="/dashboard" className="hover:text-blue-500">
             Dashboard
           </Link>
-          <Link href="/dashboard" className="hover:text-blue-500">
-            Dashboard
+          <Link href="/login" className="hover:text-blue-500">
+            Login
           </Link>
           <form action={logout}>
             <button type="submit" className="bg-red-800 text-white px-2 py-1 rounded-md hover:opacity-85">Logout</button>
