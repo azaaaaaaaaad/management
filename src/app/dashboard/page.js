@@ -1,6 +1,3 @@
-
-
-
 import MainLayout from "@/components/dashboard/MainLayout";
 
 const Dashboard = () => {

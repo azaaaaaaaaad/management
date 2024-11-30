@@ -9,7 +9,19 @@ export async function POST(req) {
     const body = await req.json();
 
     // Validation
-    const requiredFields = ["teacherName", "idNo", "gender", "class", "subject", "section", "time", "date", "phone", "email"];
+    const requiredFields = [
+      "teacherName",
+      "idNo",
+      "gender",
+      "class",
+      "subject",
+      "section",
+      "startTime",
+      "endTime",
+      "date",
+      "phone",
+      "email",
+    ];
     const missingFields = requiredFields.filter((field) => !body[field]);
     if (missingFields.length > 0) {
       return new Response(
@@ -18,7 +30,21 @@ export async function POST(req) {
       );
     }
 
-    const result = await collection.insertOne(body);
+    // Validate time format
+    const timeRegex = /^\d{2}:\d{2}$/; // Validates time in HH:mm format
+    if (!timeRegex.test(body.startTime) || !timeRegex.test(body.endTime)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid time format. Use HH:mm for startTime and endTime." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Combine startTime and endTime into a single time range for storage/display
+    const timeRange = `${body.startTime} - ${body.endTime}`;
+    const classData = { ...body, time: timeRange };
+
+    // Insert into the database
+    const result = await collection.insertOne(classData);
 
     return new Response(
       JSON.stringify({ message: "Class added successfully", data: result }),
@@ -35,5 +61,29 @@ export async function POST(req) {
     );
   }
 }
+
+
+export async function GET(req) {
+  try {
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
+    const collection = db.collection("classes");
+
+    const classes = await collection.find({}).toArray();
+
+    return new Response(JSON.stringify(classes), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error fetching classes:", error);
+    return new Response("Failed to fetch classes", { status: 500 });
+  }
+}
+
+
+
+
+
 
 
