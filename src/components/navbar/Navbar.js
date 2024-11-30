@@ -3,9 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { logout } from "@/action/authAction";
+import { useSession } from "next-auth/react";
+import Logout from "../auth/Logout";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session, status } = useSession()
+
+  if (status === "loading") { return "" }
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -25,15 +30,19 @@ const Navbar = () => {
           <Link href="/" className="hover:text-blue-500">
             Features
           </Link>
-          <Link href="/dashboard" className="hover:text-blue-500">
-            Dashboard
-          </Link>
-          <Link href="/login" className="hover:text-blue-500">
-            Login
-          </Link>
-          <form action={logout}>
-            <button type="submit" className="bg-red-800 text-white px-2 py-1 rounded-md hover:opacity-85">Logout</button>
-          </form>
+
+          {session ? (
+            <>
+              <Link href="/dashboard" className="hover:text-blue-500">
+                Dashboard
+              </Link>
+              <Logout />
+            </>
+          ) : (
+            <Link href="/login" className="bg-blue-800 text-white px-2 py-1 rounded-md hover:opacity-85 hover:bg-blue-600">
+              Login
+            </Link>
+          )}
         </nav>
 
         {/* Mobile Hamburger */}
@@ -71,12 +80,18 @@ const Navbar = () => {
             <Link href="/" className="hover:text-blue-500">
               Features
             </Link>
-            <Link href="/dashboard" className="hover:text-blue-500">
-              Dashboard
-            </Link>
-            <form action={logout}>
-              <button type="submit" className="bg-red-800 text-white px-2 py-1 rounded-md hover:opacity-85">Logout</button>
-            </form>
+            {session ? (
+              <>
+                <Link href="/dashboard" className="hover:text-blue-500">
+                  Dashboard
+                </Link>
+                <Logout />
+              </>
+            ) : (
+              <Link href="/login" className="bg-blue-800 text-white px-2 py-1 rounded-md hover:opacity-85 hover:bg-blue-600">
+                Login
+              </Link>
+            )}
           </nav>
         </div>
       )}
