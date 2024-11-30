@@ -1,150 +1,148 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import Modal from './editClassModel'; // A custom modal component for editing
+import { useEffect, useState } from 'react';
 
 const AllClasses = () => {
   const [classes, setClasses] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [editingClass, setEditingClass] = useState(null); // For editing a class
-  const [showEditModal, setShowEditModal] = useState(false); // Toggle for edit modal
+  const [editClass, setEditClass] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const rowsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await axios.get('/api/classes');
+        setClasses(response.data);
+      } catch (error) {
+        console.error('Error fetching classes:', error);
+      }
+    };
+
     fetchClasses();
   }, []);
 
-  const fetchClasses = async () => {
+  const handleDelete = async (idNo) => {
+    const confirmed = window.confirm('Are you sure you want to delete this class?');
+    if (!confirmed) return;
+
     try {
-      const response = await axios.get('/api/classes');
-      setClasses(response.data);
+      await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`);
+      setClasses(classes.filter((cls) => cls.idNo !== idNo));
     } catch (error) {
-      console.error('Error fetching classes:', error);
+      console.error('Error deleting class:', error.response?.data || error.message);
     }
   };
 
-  // const handleEdit = (classData) => {
-  //   setEditingClass(classData); // Set the class to be edited
-  //   setShowEditModal(true); // Open the edit modal
-  // };
+  const handleEdit = (classData) => {
+    setEditClass(classData);
+    setIsModalOpen(true);
+  };
 
-  // const handleSaveEdit = async (updatedClass) => {
-  //   try {
-  //     const response = await axios.put('/api/classes', updatedClass);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditClass(null);
+  };
 
-  //     if (response.status === 200) {
-  //       Swal.fire('Success', 'Class updated successfully!', 'success');
-  //       setClasses((prev) =>
-  //         prev.map((cls) => (cls.idNo === updatedClass.idNo ? updatedClass : cls))
-  //       );
-  //       setShowEditModal(false);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating class:', error);
-  //     Swal.fire('Error', 'Failed to update class.', 'error');
-  //   }
-  // };
+  const handleUpdate = async (event) => {
+    event.preventDefault();
 
-  // const handleDelete = async (idNo) => {
-  //   try {
-  //     const result = await Swal.fire({
-  //       title: 'Are you sure?',
-  //       text: 'This action cannot be undone!',
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonText: 'Yes, delete it!',
-  //       cancelButtonText: 'Cancel',
-  //       reverseButtons: true,
-  //     });
+    try {
+      const { idNo, time, ...rest } = editClass;
 
-  //     if (!result.isConfirmed) return;
+      // Extract startTime and endTime from time if provided
+      let startTime, endTime;
+      if (time) {
+        [startTime, endTime] = time.split(' - ');
+      }
 
-  //     // Send DELETE request
-  //     const response = await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`); // Ensure idNo is encoded
+      const updatedClass = {
+        ...rest,
+        ...(startTime && { startTime }),
+        ...(endTime && { endTime }),
+      };
 
-  //     if (response.status === 200) {
-  //       Swal.fire('Deleted!', 'The class has been deleted successfully.', 'success');
-  //       setClasses((prev) => prev.filter((cls) => cls.idNo !== idNo));
-  //     }
-  //   } catch (error) {
-  //     console.error('Error deleting class:', error);
-  //     Swal.fire('Error!', 'Failed to delete the class.', 'error');
-  //   }
-  // };
+      await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
 
+      setClasses(
+        classes.map((cls) =>
+          cls.idNo === idNo ? { ...cls, ...updatedClass } : cls
+        )
+      );
+      closeModal();
+    } catch (error) {
+      console.error('Error updating class:', error.response?.data || error.message);
+    }
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditClass({ ...editClass, [name]: value });
+  };
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedClasses = classes.slice(startIndex, startIndex + rowsPerPage);
 
   return (
-    <div className="p-6 bg-gray-900 min-h-screen text-white">
-      <h2 className="text-3xl font-bold text-center mb-6 text-yellow-400">All Class Schedules</h2>
-
-      <div className="overflow-x-auto shadow-md rounded-lg border border-gray-700 bg-gray-800">
-        <table className="min-w-full table-auto text-sm">
-          <thead className="bg-gray-700 text-yellow-400">
-            <tr>
-              <th className="px-4 py-3 text-left">ID</th>
-              <th className="px-4 py-3 text-left">Teacher Name</th>
-              <th className="px-4 py-3 text-left">Gender</th>
-              <th className="px-4 py-3 text-left">Class</th>
-              <th className="px-4 py-3 text-left">Subject</th>
-              <th className="px-4 py-3 text-left">Section</th>
-              <th className="px-4 py-3 text-left">Date</th>
-              <th className="px-4 py-3 text-left">Time</th>
-              <th className="px-4 py-3 text-left">Phone</th>
-              <th className="px-4 py-3 text-left">Email</th>
-              {/* <th className="px-4 py-3 text-left">Actions</th> */}
+    <div className="font-sans overflow-x-auto">
+      <table className="min-w-full bg-white">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">ID</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Teacher</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Gender</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Class</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Subject</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Section</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Date</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Time</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Phone</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Email</th>
+            <th className="p-4 text-left text-xs font-semibold text-gray-800">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedClasses.map((cls, index) => (
+            <tr key={index} className="hover:bg-gray-200">
+              <td className="p-4 text-gray-800">{cls.idNo}</td>
+              <td className="p-4 text-gray-800">{cls.teacherName}</td>
+              <td className="p-4 text-gray-800">{cls.gender}</td>
+              <td className="p-4 text-gray-800">{cls.class}</td>
+              <td className="p-4 text-gray-800">{cls.subject}</td>
+              <td className="p-4 text-gray-800">{cls.section}</td>
+              <td className="p-4 text-gray-800">{cls.date}</td>
+              <td className="p-4 text-gray-800">{cls.time}</td>
+              <td className="p-4 text-gray-800">{cls.phone}</td>
+              <td className="p-4 text-gray-800">{cls.email}</td>
+              <td className="p-4">
+                <button
+                  onClick={() => handleEdit(cls)}
+                  className="mr-4 text-blue-500 hover:text-blue-700"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(cls.idNo)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {paginatedClasses.map((cls, index) => (
-              <tr
-                key={index}
-                className={`border-t border-gray-600 hover:bg-gray-700 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'
-                  }`}
-              >
-                <td className="px-4 py-3">{cls.idNo}</td>
-                <td className="px-4 py-3">{cls.teacherName}</td>
-                <td className="px-4 py-3">{cls.gender}</td>
-                <td className="px-4 py-3">{cls.class}</td>
-                <td className="px-4 py-3">{cls.subject}</td>
-                <td className="px-4 py-3">{cls.section}</td>
-                <td className="px-4 py-3">{cls.date}</td>
-                <td className="px-4 py-3">{cls.time}</td>
-                <td className="px-4 py-3">{cls.phone}</td>
-                <td className="px-4 py-3">{cls.email}</td>
-                {/* <td className="px-4 py-3 flex gap-2">
-                  <button
-                    onClick={() => handleEdit(cls)}
-                    className="px-3 py-1 bg-blue-600 text-white rounded-md"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(cls.idNo)}
-                    className="px-3 py-1 bg-red-600 text-white rounded-md"
-                  >
-                    Delete
-                  </button>
-                </td> */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
 
       {/* Pagination */}
       <div className="mt-6 flex justify-between items-center">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          className="px-4 py-2 bg-gray-700 text-yellow-400 rounded-md hover:bg-gray-600"
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
         >
           Previous
         </button>
-        <span className="text-yellow-400">
+        <span>
           Page {currentPage} of {Math.ceil(classes.length / rowsPerPage)}
         </span>
         <button
@@ -153,19 +151,62 @@ const AllClasses = () => {
               Math.min(prev + 1, Math.ceil(classes.length / rowsPerPage))
             )
           }
-          className="px-4 py-2 bg-gray-700 text-yellow-400 rounded-md hover:bg-gray-600"
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
         >
           Next
         </button>
       </div>
 
-      {/* Edit Modal */}
-      {showEditModal && (
-        <Modal
-          classData={editingClass}
-          onClose={() => setShowEditModal(false)}
-          onSave={handleSaveEdit}
-        />
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded shadow-md max-w-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Edit Class</h2>
+            <form onSubmit={handleUpdate}>
+              <div className="grid grid-cols-1 gap-4">
+                <input
+                  type="text"
+                  name="teacherName"
+                  value={editClass?.teacherName || ''}
+                  onChange={handleEditChange}
+                  placeholder="Teacher Name"
+                  className="p-2 border rounded"
+                />
+                <input
+                  type="text"
+                  name="subject"
+                  value={editClass?.subject || ''}
+                  onChange={handleEditChange}
+                  placeholder="Subject"
+                  className="p-2 border rounded"
+                />
+                <input
+                  type="text"
+                  name="time"
+                  value={editClass?.time || ''}
+                  onChange={handleEditChange}
+                  placeholder="Time (HH:mm - HH:mm)"
+                  className="p-2 border rounded"
+                />
+              </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="mr-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );
