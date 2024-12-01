@@ -1,12 +1,12 @@
-
+// import AddClassForm from "@/components/addClasses/addClasses";
 import MainLayout from "@/components/dashboard/MainLayout";
 
-const AddClass = () => {
-return(
-    <>
-   <MainLayout />
-    </>
-)
-};
 
-export default AddClass;
+
+export default function AddClass() {
+    return (
+        <div className="min-h-screen bg-gray-100">
+            <MainLayout />
+        </div>
+    )
+}
