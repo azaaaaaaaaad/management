@@ -1,4 +1,7 @@
+
+
 import clientPromise from "@/lib/mongodb";
+const { ObjectId } = require("mongodb");
 
 // GET - Fetch all students
 export async function GET() {
@@ -43,54 +46,35 @@ export async function POST(req) {
   }
 }
 
-// PUT - Update a student
-export async function PUT(req) {
-  try {
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB);
-    const collection = db.collection("students");
 
-    const { id, ...updateData } = await req.json(); // Parse the request body and destructure
-    const { ObjectId } = require("mongodb");
-
-    const result = await collection.updateOne(
-      { _id: new ObjectId(id) }, // Find by ID
-      { $set: updateData } // Update fields
-    );
-
-    if (result.matchedCount === 0) {
-      return new Response("Student not found", { status: 404 });
-    }
-
-    return new Response(
-      JSON.stringify({ message: "Student updated successfully", data: result }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  } catch (error) {
-    console.error("Error updating student:", error);
-    return new Response("Failed to update student", { status: 500 });
-  }
-}
-
-// DELETE - Remove a student
+// DELETE - Remove a student based on the _id
 export async function DELETE(req) {
   try {
+    // Extract student ID from query params
+    const id = req.nextUrl.searchParams.get("id");
+
+    if (!id) {
+      return new Response("Student ID is required", { status: 400 });
+    }
+
+    // Validate the ID format (check if it's a valid MongoDB ObjectId)
+    if (!ObjectId.isValid(id)) {
+      return new Response("Invalid student ID", { status: 400 });
+    }
+
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);
     const collection = db.collection("students");
 
-    const { id } = await req.json(); // Parse the request body to get the ID
-    const { ObjectId } = require("mongodb");
-
+    // Perform the delete operation by _id
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
 
+    // If no student is found and deleted
     if (result.deletedCount === 0) {
       return new Response("Student not found", { status: 404 });
     }
 
+    // Return success response
     return new Response(
       JSON.stringify({ message: "Student deleted successfully", data: result }),
       {
@@ -103,3 +87,4 @@ export async function DELETE(req) {
     return new Response("Failed to delete student", { status: 500 });
   }
 }
+
