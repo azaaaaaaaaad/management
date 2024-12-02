@@ -52,4 +52,9 @@ export const login = async (formData) => {
 
 export const logout = async () => {
   await signOut()
+  return redirect('/')
+}
+
+export const logout = async () => {
+  await signOut({"redirectTo": '/login'})
 }

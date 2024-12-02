@@ -4,6 +4,8 @@ import { FaUser } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { usePathname } from "next/navigation"; // Import usePathname hook
+import Link from "next/link";
+import { BiHomeAlt } from "react-icons/bi";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const pathname = usePathname(); // Get the current route
@@ -44,6 +46,17 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </a>
             </li>
             <li>
+              <Link
+                href="/"
+                className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive(
+                  "/"
+                )}`}
+              >
+                <BiHomeAlt className="text-2xl mr-2" />
+                <span>Back to Home</span>
+              </Link>
+            </li>
+            <li>
               <a
                 href="/dashboard/teacherProfile"
                 className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive(
@@ -54,7 +67,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <span>Teacher Profile</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="/dashboard/allTeachers"
                 className={`menu-item text-sm flex items-center cursor-pointer rounded-md px-3 py-3 transition-all duration-300 ${isActive(
@@ -64,7 +77,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <MdGroups className="text-2xl mr-2" />
                 <span>All Teachers</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a

@@ -1,3 +1,4 @@
+
 // import { MongoClient } from 'mongodb';
 
 // const client = new MongoClient(process.env.MONGODB_URI, {
@@ -25,6 +26,13 @@ import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+import { MongoClient } from "mongodb";
+
+const uri = process.env.MONGODB_URI;
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri);
+
 
 let clientPromise;
 

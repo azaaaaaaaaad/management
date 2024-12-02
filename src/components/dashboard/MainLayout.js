@@ -8,6 +8,7 @@ import Header from "./HeaderLayout";
 import Dashboard1 from "./layouts/Dashboard1";
 import AddClassForm from "./addClasses/addClasses";
 import AllClasses from "./allClasses/allClasses";
+
 import TeacherProfile from "./TeacherProfile";
 
 
@@ -44,7 +45,11 @@ const MainLayout = () => {
           <div className="mt-8">
             {pathname === "/dashboard" && <Dashboard1 />}
             {pathname === "/dashboard/allTeachers" && <div>All Teachers Content</div>}
+
             {pathname === "/dashboard/teacherProfile" && <TeacherProfile></TeacherProfile>}
+
+            {pathname === "/dashboard/teacherProfile" && <div> Teacher Profile</div>}
+
             {pathname === "/dashboard/allClasses" && <AllClasses></AllClasses>}
             {pathname === "/dashboard/addClass" && <AddClassForm/>}
             {/* Add more conditions as necessary */}

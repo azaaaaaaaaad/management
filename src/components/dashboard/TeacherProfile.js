@@ -1,4 +1,5 @@
 
+
 // import { auth } from "@/app/auth";
 
 import Image from "next/image";
@@ -43,6 +44,16 @@ function TeacherProfile() {
       </div>
     </div>
   </div>
+import { auth } from "@/app/auth";
+
+async function TeacherProfile() {
+  const session = new auth()
+  console.log('teacher pro::', session);
+  
+  return (
+    <div className="text-black">
+      teacher
+    </div>
   );
 }
 
