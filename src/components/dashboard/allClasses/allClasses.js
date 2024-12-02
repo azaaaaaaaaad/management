@@ -27,11 +27,13 @@ const AllClasses = () => {
     const confirmed = window.confirm('Are you sure you want to delete this class?');
     if (!confirmed) return;
 
+    // delete req
     try {
-      await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`);
+      await axios.delete(`/api/all-class/${idNo}`)
       setClasses(classes.filter((cls) => cls.idNo !== idNo));
+      alert('deleted successfully!')
     } catch (error) {
-      console.error('Error deleting class:', error.response?.data || error.message);
+      console.error('Failed to delete the class!!');
     }
   };
 
