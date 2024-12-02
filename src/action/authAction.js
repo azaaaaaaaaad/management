@@ -47,9 +47,9 @@ export const login = async (formData) => {
     return err.message
   }
 
-  redirect('/')
+  return redirect('/')
 }
 
 export const logout = async () => {
-  await signOut()
+  await signOut({"redirectTo": '/login'})
 }
