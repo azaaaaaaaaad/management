@@ -47,6 +47,37 @@ const AllClasses = () => {
     setEditClass(null);
   };
 
+  // const handleUpdate = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const { idNo, time, ...rest } = editClass;
+
+  //     // Extract startTime and endTime from time if provided
+  //     let startTime, endTime;
+  //     if (time) {
+  //       [startTime, endTime] = time.split(' - ');
+  //     }
+
+  //     const updatedClass = {
+  //       ...rest,
+  //       ...(startTime && { startTime }),
+  //       ...(endTime && { endTime }),
+  //     };
+
+  //     await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
+
+  //     setClasses(
+  //       classes.map((cls) =>
+  //         cls.idNo === idNo ? { ...cls, ...updatedClass } : cls
+  //       )
+  //     );
+  //     closeModal();
+  //   } catch (error) {
+  //     console.error('Error updating class:', error.response?.data || error.message);
+  //   }
+  // };
+
   const handleUpdate = async (event) => {
     event.preventDefault();
 
@@ -65,7 +96,7 @@ const AllClasses = () => {
         ...(endTime && { endTime }),
       };
 
-      await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
+      await axios.patch(`/api/all-class/${idNo}`, updatedClass);
 
       setClasses(
         classes.map((cls) =>
