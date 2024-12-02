@@ -27,6 +27,13 @@ const AllClasses = () => {
     const confirmed = window.confirm('Are you sure you want to delete this class?');
     if (!confirmed) return;
 
+
+    try {
+      await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`);
+      setClasses(classes.filter((cls) => cls.idNo !== idNo));
+    } catch (error) {
+      console.error('Error deleting class:', error.response?.data || error.message);
+
     // delete req
     try {
       await axios.delete(`/api/all-class/${idNo}`)
@@ -34,6 +41,7 @@ const AllClasses = () => {
       alert('deleted successfully!')
     } catch (error) {
       console.error('Failed to delete the class!!');
+
     }
   };
 
@@ -46,6 +54,8 @@ const AllClasses = () => {
     setIsModalOpen(false);
     setEditClass(null);
   };
+
+
 
   // const handleUpdate = async (event) => {
   //   event.preventDefault();
@@ -78,6 +88,7 @@ const AllClasses = () => {
   //   }
   // };
 
+
   const handleUpdate = async (event) => {
     event.preventDefault();
 
@@ -95,6 +106,9 @@ const AllClasses = () => {
         ...(startTime && { startTime }),
         ...(endTime && { endTime }),
       };
+
+
+      await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
 
       await axios.patch(`/api/all-class/${idNo}`, updatedClass);
 

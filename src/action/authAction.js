@@ -47,6 +47,11 @@ export const login = async (formData) => {
     return err.message
   }
 
+  redirect('/')
+}
+
+export const logout = async () => {
+  await signOut()
   return redirect('/')
 }
 
