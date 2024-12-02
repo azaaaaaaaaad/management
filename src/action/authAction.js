@@ -47,7 +47,7 @@ export const login = async (formData) => {
     return err.message
   }
 
-  redirect('/')
+  return redirect('/')
 }
 
 export const logout = async () => {
