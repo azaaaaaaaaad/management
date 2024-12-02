@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 
 async function TeacherProfile() {
   const session = new auth()
