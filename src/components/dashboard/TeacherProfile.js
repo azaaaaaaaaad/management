@@ -35,7 +35,7 @@ function TeacherProfile() {
     <div className="mt-6 flex flex-col items-center gap-4 text-gray-100">
       <div className="flex items-center gap-3">
         <i className="fas fa-envelope text-lg text-white"></i>
-        <span>johndoe@email.com</span>
+        <span>johndoew@email.com</span>
       </div>
       <div className="flex items-center gap-3">
         <i className="fas fa-phone-alt text-lg text-white"></i>
