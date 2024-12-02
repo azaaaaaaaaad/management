@@ -1,10 +1,12 @@
-// components/Header.js
-import { CiSearch } from "react-icons/ci";
-import { RiShutDownLine } from "react-icons/ri";
-import { useState } from "react";
-import Image from "next/image";
+"use client"
 
-const Header = ({ toggleDropdown, isDropdownOpen }) => {
+import { CiSearch } from "react-icons/ci";
+import { useSession } from "next-auth/react";
+
+const Header = () => {
+  const {data: session, status} = useSession()
+  
+  if (status === "loading") {return ""}
   return (
     <header className="z-50 bg-[#f7f6f9] sticky top-0 pt-8">
       <div className="flex flex-wrap items-center w-full relative tracking-wide">
@@ -14,24 +16,10 @@ const Header = ({ toggleDropdown, isDropdownOpen }) => {
             <CiSearch className="text-xl" />
           </div>
 
-          <div className="flex items-center justify-end gap-6 ml-auto">
-            {/* Profile Icon with Dropdown */}
-            <div className="relative flex items-center gap-4 cursor-pointer hidden sm:flex md:flex" onClick={toggleDropdown}>
-              <p className="text-gray-500 text-sm">Hi, John</p>
-              <Image src="https://readymadeui.com/team-1.webp" height={38} width={38} alt="profile-pic" className="rounded-full border-2 border-gray-300" />
-            </div>
-
-            {/* Dropdown Content */}
-            {isDropdownOpen && (
-              <div className="dropdown-content shadow-md p-2 bg-white rounded-md absolute top-[38px] right-0 w-56 z-50">
-                <div className="w-full space-y-2">
-                  <a href="#" className="text-sm text-gray-800 cursor-pointer flex items-center p-2 rounded-md hover:bg-[#d9f3ea] transition duration-300 ease-in-out">
-                    <RiShutDownLine className="text-xl mr-2"/>
-                    Logout
-                  </a>
-                </div>
-              </div>
-            )}
+          <div className="flex gap-2 items-center self-center">
+            {/* img using 1st letter of username */}
+            <div className="px-2 border rounded-full uppercase bg-blue-600 text-white">{session.user.username.slice(0,1)}</div>
+            <p className="text-blue-600 dark:text-blue-600">{session.user.username}</p>
           </div>
         </div>
       </div>
