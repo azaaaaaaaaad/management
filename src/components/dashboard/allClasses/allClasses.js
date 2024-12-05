@@ -7,9 +7,10 @@ const AllClasses = () => {
   const [classes, setClasses] = useState([]);
   const [editClass, setEditClass] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const rowsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 10;
 
+  // Fetch classes on component mount
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -23,72 +24,33 @@ const AllClasses = () => {
     fetchClasses();
   }, []);
 
+  // Handle delete
   const handleDelete = async (idNo) => {
     const confirmed = window.confirm('Are you sure you want to delete this class?');
     if (!confirmed) return;
 
-
     try {
       await axios.delete(`/api/classes/${encodeURIComponent(idNo)}`);
       setClasses(classes.filter((cls) => cls.idNo !== idNo));
+      alert('Class deleted successfully!');
     } catch (error) {
-      console.error('Error deleting class:', error.response?.data || error.message);
-
-    // delete req
-    try {
-      await axios.delete(`/api/all-class/${idNo}`)
-      setClasses(classes.filter((cls) => cls.idNo !== idNo));
-      alert('deleted successfully!')
-    } catch (error) {
-      console.error('Failed to delete the class!!');
-
+      console.error('Failed to delete the class:', error.response?.data || error.message);
     }
   };
 
+  // Handle edit
   const handleEdit = (classData) => {
     setEditClass(classData);
     setIsModalOpen(true);
   };
 
+  // Close modal
   const closeModal = () => {
     setIsModalOpen(false);
     setEditClass(null);
   };
 
-
-
-  // const handleUpdate = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const { idNo, time, ...rest } = editClass;
-
-  //     // Extract startTime and endTime from time if provided
-  //     let startTime, endTime;
-  //     if (time) {
-  //       [startTime, endTime] = time.split(' - ');
-  //     }
-
-  //     const updatedClass = {
-  //       ...rest,
-  //       ...(startTime && { startTime }),
-  //       ...(endTime && { endTime }),
-  //     };
-
-  //     await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
-
-  //     setClasses(
-  //       classes.map((cls) =>
-  //         cls.idNo === idNo ? { ...cls, ...updatedClass } : cls
-  //       )
-  //     );
-  //     closeModal();
-  //   } catch (error) {
-  //     console.error('Error updating class:', error.response?.data || error.message);
-  //   }
-  // };
-
-
+  // Handle update
   const handleUpdate = async (event) => {
     event.preventDefault();
 
@@ -107,10 +69,7 @@ const AllClasses = () => {
         ...(endTime && { endTime }),
       };
 
-
       await axios.put(`/api/classes/${encodeURIComponent(idNo)}`, updatedClass);
-
-      await axios.patch(`/api/all-class/${idNo}`, updatedClass);
 
       setClasses(
         classes.map((cls) =>
@@ -118,16 +77,19 @@ const AllClasses = () => {
         )
       );
       closeModal();
+      alert('Class updated successfully!');
     } catch (error) {
       console.error('Error updating class:', error.response?.data || error.message);
     }
   };
 
+  // Handle input changes in modal
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditClass({ ...editClass, [name]: value });
   };
 
+  // Pagination
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedClasses = classes.slice(startIndex, startIndex + rowsPerPage);
 
@@ -260,3 +222,4 @@ const AllClasses = () => {
 };
 
 export default AllClasses;
+
